@@ -10,7 +10,8 @@ from cached_property import cached_property
 
 from deploy.config import DeployConfig
 from module.base.timer import Timer
-from module.config.utils import read_file, deep_get, get_server_last_update
+from module.config.deep import deep_get
+from module.config.utils import read_file, get_server_last_update
 from module.device.connection_attr import ConnectionAttr
 from module.exception import RequestHumanTakeover
 from module.logger import logger
@@ -31,7 +32,12 @@ class AssistantHandler:
         AssistantHandler.Asst = asst.Asst
         AssistantHandler.Message = utils.Message
         AssistantHandler.InstanceOptionType = utils.InstanceOptionType
-        AssistantHandler.Asst.load(path, user_dir=path, incremental_path=incremental_path)
+        try:
+            AssistantHandler.Asst.load(path, user_dir=path, incremental_path=incremental_path)
+        except OSError as e:
+            logger.critical(e)
+            logger.critical("MAA加载失败，请检查MAA本体能否正常打开")
+            raise RequestHumanTakeover
 
         AssistantHandler.ASST_HANDLER = None
 
@@ -129,8 +135,12 @@ class AssistantHandler:
             self.callback_list.remove(self.penguin_id_callback)
 
     def annihilation_callback(self, m, d):
-        if m == self.Message.SubTaskError:
-            self.signal = m
+        # Skip annihilation error task callback temporary
+        # https://github.com/MaaAssistantArknights/MaaAssistantArknights/issues/10623
+        ignoreErrorKeywords = ["FightSeries-Indicator","FightSeries-Icon"]
+        if m == self.Message.SubTaskError \
+                and deep_get(d, keys='first') != ignoreErrorKeywords:
+            self.signal = m 
 
     def fight_stop_count_callback(self, m, d):
         if m == self.Message.SubTaskCompleted:

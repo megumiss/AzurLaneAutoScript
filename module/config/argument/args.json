@@ -118,7 +118,6 @@
           "aScreenCap_nc",
           "DroidCast",
           "DroidCast_raw",
-          "scrcpy",
           "nemu_ipc",
           "ldopengl"
         ]
@@ -1709,17 +1708,22 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "display": "hide",
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -2049,16 +2053,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -2503,16 +2512,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -2914,15 +2928,16 @@
           "raid_20230118",
           "raid_20230629",
           "raid_20240130",
-          "raid_20240328"
+          "raid_20240328",
+          "raid_20250116"
         ],
         "option_bold": [
-          "raid_20240328"
+          "raid_20250116"
         ],
-        "cn": "raid_20240328",
-        "en": "raid_20240328",
-        "jp": "raid_20240328",
-        "tw": "raid_20240328"
+        "cn": "raid_20250116",
+        "en": "raid_20250116",
+        "jp": "raid_20250116",
+        "tw": "raid_20250116"
       },
       "Mode": {
         "type": "select",
@@ -3086,6 +3101,179 @@
       }
     }
   },
+  "Hospital": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Hospital",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "Hospital": {
+      "UseRecommendFleet": {
+        "type": "checkbox",
+        "value": true
+      }
+    },
+    "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "MapAchievement": {
+        "type": "select",
+        "value": "non_stop",
+        "option": [
+          "non_stop",
+          "100_percent_clear",
+          "map_3_stars",
+          "threat_safe",
+          "threat_safe_without_3_stars"
+        ],
+        "display": "hide"
+      },
+      "StageIncrease": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "GetNewShip": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "ReachLevel": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      }
+    },
+    "Emotion": {
+      "Mode": {
+        "type": "select",
+        "value": "calculate",
+        "option": [
+          "calculate",
+          "ignore",
+          "calculate_ignore"
+        ]
+      },
+      "Fleet1Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet1Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet1Control": {
+        "type": "select",
+        "value": "prevent_yellow_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Value": {
+        "type": "input",
+        "value": 119,
+        "display": "hide"
+      },
+      "Fleet2Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "hide"
+      },
+      "Fleet2Control": {
+        "type": "select",
+        "value": "prevent_yellow_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "Coalition": {
     "Scheduler": {
       "Enable": {
@@ -3139,10 +3327,10 @@
           "coalition_20230323",
           "coalition_20240627"
         ],
-        "cn": "coalition_20240627",
-        "en": "coalition_20240627",
-        "jp": "coalition_20240627",
-        "tw": "coalition_20230323"
+        "cn": "coalition_20230323",
+        "en": "coalition_20230323",
+        "jp": "coalition_20230323",
+        "tw": "coalition_20240627"
       },
       "Mode": {
         "type": "select",
@@ -3182,11 +3370,11 @@
     "Coalition": {
       "Mode": {
         "type": "select",
-        "value": "hard",
+        "value": "tc1",
         "option": [
-          "easy",
-          "normal",
-          "hard",
+          "tc1",
+          "tc2",
+          "tc3",
           "ex"
         ]
       },
@@ -3441,25 +3629,33 @@
           "war_archives_20200820_cn",
           "war_archives_20200903_cn",
           "war_archives_20200917_cn",
+          "war_archives_20201012_cn",
           "war_archives_20201029_cn",
           "war_archives_20201229_cn",
           "war_archives_20210225_cn",
           "war_archives_20210325_cn",
+          "war_archives_20210422_cn",
           "war_archives_20210527_cn",
           "war_archives_20210624_cn",
           "war_archives_20210819_cn",
+          "war_archives_20210916_cn",
           "war_archives_20211014_cn",
           "war_archives_20211028_cn",
+          "war_archives_20211111_cn",
+          "war_archives_20211229_cn",
           "war_archives_20220210_cn",
-          "war_archives_20220414_cn"
+          "war_archives_20220224_cn",
+          "war_archives_20220324_cn",
+          "war_archives_20220414_cn",
+          "war_archives_20220526_cn"
         ],
         "option_bold": [
-          "war_archives_20210225_cn"
+          "war_archives_20220526_cn"
         ],
-        "cn": "war_archives_20210225_cn",
-        "en": "war_archives_20210225_cn",
-        "jp": "war_archives_20210225_cn",
-        "tw": "war_archives_20210225_cn"
+        "cn": "war_archives_20220526_cn",
+        "en": "war_archives_20220526_cn",
+        "jp": "war_archives_20220526_cn",
+        "tw": "war_archives_20220526_cn"
       },
       "Mode": {
         "type": "select",
@@ -3915,16 +4111,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -4386,16 +4587,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -4857,16 +5063,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -5328,16 +5539,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -5789,16 +6005,21 @@
           "event_20240725_cn",
           "event_20240815_cn",
           "event_20240829_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20241024_cn",
+          "event_20241121_cn",
+          "event_20241219_cn",
+          "event_20250227_cn",
+          "event_20250424_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20240912_cn",
+          "event_20250424_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
-        "tw": "event_20230914_cn"
+        "cn": "event_20250424_cn",
+        "en": "event_20250424_cn",
+        "jp": "event_20250424_cn",
+        "tw": "event_20240912_cn"
       },
       "Mode": {
         "type": "select",
@@ -6197,15 +6418,16 @@
           "raid_20230118",
           "raid_20230629",
           "raid_20240130",
-          "raid_20240328"
+          "raid_20240328",
+          "raid_20250116"
         ],
         "option_bold": [
-          "raid_20240328"
+          "raid_20250116"
         ],
-        "cn": "raid_20240328",
-        "en": "raid_20240328",
-        "jp": "raid_20240328",
-        "tw": "raid_20240328"
+        "cn": "raid_20250116",
+        "en": "raid_20250116",
+        "jp": "raid_20250116",
+        "tw": "raid_20250116"
       },
       "Mode": {
         "type": "select",
@@ -6423,10 +6645,10 @@
           "coalition_20230323",
           "coalition_20240627"
         ],
-        "cn": "coalition_20240627",
-        "en": "coalition_20240627",
-        "jp": "coalition_20240627",
-        "tw": "coalition_20230323"
+        "cn": "coalition_20230323",
+        "en": "coalition_20230323",
+        "jp": "coalition_20230323",
+        "tw": "coalition_20240627"
       },
       "Mode": {
         "type": "select",
@@ -6466,11 +6688,12 @@
     "Coalition": {
       "Mode": {
         "type": "select",
-        "value": "hard",
+        "value": "sp",
         "option": [
-          "easy",
-          "normal",
-          "hard",
+          "tc1",
+          "tc2",
+          "tc3",
+          "sp",
           "ex"
         ],
         "display": "hide"
@@ -7035,6 +7258,10 @@
       "EnhanceIndex": {
         "type": "input",
         "value": 1
+      },
+      "MaxFeedLevel": {
+        "type": "input",
+        "value": 5
       }
     },
     "Storage": {
@@ -7189,6 +7416,61 @@
       "CollectWeeklyMission": {
         "type": "checkbox",
         "value": true
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "Awaken": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Awaken",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "Awaken": {
+      "LevelCap": {
+        "type": "select",
+        "value": "level120",
+        "option": [
+          "level120",
+          "level125"
+        ]
       }
     },
     "Storage": {
@@ -7914,7 +8196,8 @@
         "value": 2,
         "option": [
           2,
-          3
+          3,
+          4
         ]
       },
       "ShipIndex": {
@@ -7948,7 +8231,8 @@
           1,
           2,
           3,
-          4
+          4,
+          5
         ]
       },
       "ShipIndex": {
@@ -9169,6 +9453,28 @@
       "SelectEnemy": {
         "type": "checkbox",
         "value": true
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "EventStory": {
+    "EventStory": {
+      "SkipBattle": {
+        "type": "lock",
+        "value": true,
+        "option": [
+          true
+        ],
+        "option_bold": [
+          true
+        ]
       }
     },
     "Storage": {

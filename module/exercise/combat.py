@@ -1,5 +1,5 @@
 from module.combat.combat import *
-from module.combat.combat import PAUSE, QUIT
+from module.combat.combat import QUIT
 from module.exercise.assets import *
 from module.exercise.equipment import ExerciseEquipment
 from module.exercise.hp_daemon import HpDaemon
@@ -29,7 +29,9 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
                 continue
 
             # End
-            if self.is_combat_executing():
+            pause = self.is_combat_executing()
+            if pause:
+                logger.attr('BattleUI', pause)
                 break
 
     def _combat_execute(self):
@@ -40,16 +42,32 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
         logger.info('Combat execute')
         self.device.stuck_record_clear()
         self.device.click_record_clear()
-        self.low_hp_confirm_timer = Timer(self.config.Exercise_LowHpConfirmWait, count=2).start()
+        self.low_hp_confirm_timer = Timer(1.5, count=2).start()
         show_hp_timer = Timer(5)
         pause_interval = Timer(0.5, count=1)
+        # Pause button to identify battle UI theme
+        pause = None
         success = True
         end = False
 
         while 1:
             self.device.screenshot()
 
-            if not self.is_combat_executing():
+            # End
+            if self._in_exercise() or self.appear(BATTLE_PREPARATION, offset=(20, 20)):
+                logger.hr('Combat end')
+                if not end:
+                    logger.warning('Combat ended without end conditions detected')
+                break
+
+            p = self.is_combat_executing()
+            if p:
+                if end:
+                    end = False
+                if pause is None:
+                    pause = p
+            else:
+                self.low_hp_confirm_timer.reset()
                 # Finish - S or D rank
                 if self.appear_then_click(BATTLE_STATUS_S, interval=1):
                     success = True
@@ -86,25 +104,28 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
                 pause_interval.reset()
                 continue
             if not end:
-                if self._at_low_hp(image=self.device.image):
+                if p and self._at_low_hp(image=self.device.image, pause=pause):
                     logger.info('Exercise quit')
                     if pause_interval.reached():
-                        pause = self.is_combat_executing()
-                        if pause:
-                            self.device.click(pause)
-                            pause_interval.reset()
-                            continue
+                        self.device.click(p)
+                        pause_interval.reset()
+                        continue
                 else:
                     if show_hp_timer.reached():
                         show_hp_timer.reset()
                         self._show_hp()
 
-            # End
-            if self._in_exercise() or self.appear(BATTLE_PREPARATION, offset=(20, 20)):
-                logger.hr('Combat end')
-                if not end:
-                    logger.warning('Combat ended without end conditions detected')
-                break
+            # bunch of popup handlers
+            if self.handle_popup_confirm('EXERCISE_COMBAT_EXECUTE'):
+                continue
+            if self.handle_urgent_commission():
+                continue
+            if self.handle_guild_popup_cancel():
+                continue
+            if self.handle_vote_popup():
+                continue
+            if self.handle_mission_popup_ack():
+                continue
 
         return success
 

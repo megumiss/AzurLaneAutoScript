@@ -1,6 +1,7 @@
 import ctypes
 import os
 import subprocess
+import time
 import typing as t
 from dataclasses import dataclass
 from functools import wraps
@@ -9,6 +10,7 @@ import cv2
 import numpy as np
 
 from module.base.decorator import cached_property
+from module.device.env import IS_WINDOWS
 from module.device.method.utils import RETRY_TRIES, get_serial_pair, retry_sleep
 from module.device.platform import Platform
 from module.exception import RequestHumanTakeover
@@ -145,7 +147,7 @@ def retry(func):
         for _ in range(RETRY_TRIES):
             try:
                 if callable(init):
-                    retry_sleep(_)
+                    time.sleep(retry_sleep(_))
                     init()
                 return func(self, *args, **kwargs)
             # Can't handle
@@ -196,7 +198,7 @@ class LDOpenGLImpl:
             if not os.path.exists(ldopengl_dll):
                 raise LDOpenGLIncompatible(
                     f'ldopengl_dll={ldopengl_dll} does not exist, '
-                    f'ldopengl requires LDPlayer >= 9.0.75, please check your version'
+                    f'ldopengl requires LDPlayer >= 9.0.78, please check your version'
                 )
             else:
                 raise LDOpenGLIncompatible(
@@ -264,6 +266,8 @@ class LDOpenGLImpl:
             int: instance_id, or None if failed to predict
         """
         serial, _ = get_serial_pair(serial)
+        if serial is None:
+            return None
         try:
             port = int(serial.split(':')[1])
         except (IndexError, ValueError):
@@ -310,7 +314,12 @@ class LDOpenGL(Platform):
             raise RequestHumanTakeover
 
     def ldopengl_available(self) -> bool:
+        if not IS_WINDOWS:
+            return False
         if not self.is_ldplayer_bluestacks_family:
+            return False
+        logger.attr('EmulatorInfo_Emulator', self.config.EmulatorInfo_Emulator)
+        if self.config.EmulatorInfo_Emulator not in ['LDPlayer9']:
             return False
 
         try:
@@ -325,13 +334,3 @@ class LDOpenGL(Platform):
         image = cv2.flip(image, 0)
         cv2.cvtColor(image, cv2.COLOR_BGR2RGB, dst=image)
         return image
-
-
-if __name__ == '__main__':
-    ld = LDOpenGLImpl('E:/ProgramFiles/LDPlayer9', instance_id=1)
-    for _ in range(5):
-        import time
-
-        start = time.time()
-        ld.screenshot()
-        print(time.time() - start)
